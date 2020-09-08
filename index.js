@@ -1,6 +1,7 @@
 const express = require('express')
 
 const app = express()
+const port = 5000
 
 //? Routes
 const booksRouter = express.Router()
@@ -28,6 +29,6 @@ booksRouter.get('/about', (req, res, next) => {
 })
 
 app.use('/books', booksRouter)
-app.listen(5000, () => {
-    console.log('Server started', new Date())
+app.listen(port, () => {
+    console.log('Server started in', port, new Date())
 }) 
