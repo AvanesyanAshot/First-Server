@@ -19,7 +19,7 @@ app.get('/', (req, res, next) => {
             </lu>
         </nav>    
     </div> 
-    <h1> Main page</h1>
+    <h1>Idea</h1>
     `)
 })
 app.get('/products', (req, res, next) => {
@@ -33,7 +33,7 @@ app.get('/products', (req, res, next) => {
             </lu>
         </nav>    
     </div> 
-    <h1> Produts page</h1>
+    <h1>Produts page</h1>
     `)
     res.send(product)
 })
