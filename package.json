@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "author": "AvanesyanAshot <9teron9@mail.ru>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.4"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",
