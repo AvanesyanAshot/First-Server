@@ -1,4 +1,6 @@
 const express = require('express')
+const mongoose = require('mongoose')
+
 const app = express()
 
 const port = process.env.PORT || 8000
@@ -7,6 +9,8 @@ const port = process.env.PORT || 8000
 const booksRouter = express.Router()
 
 const product = ['brub', 'bruh']
+
+
 
 app.get('/', (req, res, next) => {
     console.log(req.query.page)
@@ -40,8 +44,6 @@ app.get('/products', (req, res, next) => {
 app.get('/products/:id', (req, res, next) => {
     res.send(product[req.params.id])
 })
-
-
 booksRouter.get('/', (req, res, next) => {
     res.send('books')
 })
@@ -50,6 +52,20 @@ booksRouter.get('/about', (req, res, next) => {
 })
 
 app.use('/books', booksRouter)
-app.listen(port, () => {
-    console.log(`Server was started on ${port} in ${new Date().toLocaleDateString()}`)
-}) 
+
+async function start() {
+    try {
+        await mongoose.connect('', {
+            useFindAndModify: false,
+            useNewUrlParser: true
+        })
+        app.listen(port, () => {
+            console.log(`Server was started on ${port} in ${new Date().toLocaleDateString()}`)
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+start()
+
