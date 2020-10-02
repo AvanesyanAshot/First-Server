@@ -1,44 +1,25 @@
 const express = require('express')
-const mongoose = require('mongoose')
+const config = require('config')
+const cors = require('cors')
 
 const app = express()
 
-const port = process.env.PORT || 8000
+//! Middleware
+app.use(cors())
+
+const PORT = config.get('port') || 8000
 
 //? Routes
 const booksRouter = express.Router()
 
 const product = ['brub', 'bruh']
 
-
-
 app.get('/', (req, res, next) => {
     console.log(req.query.page)
-    res.end(`
-    <div>
-        <nav>
-            <lu>
-                <li><a href='/'>Home</a></li>
-                <li><a href='/products'>Products</a></li>
-            </lu>
-        </nav>    
-    </div> 
-    <h1>Idea</h1>
-    `)
+    res.send('Hello world')
 })
 app.get('/products', (req, res, next) => {
     console.log('Page', req.query.page)
-    res.end(`
-    <div>
-        <nav>
-            <lu>
-                <li><a href='/'>Home</a></li>
-                <li><a href='/products'>Products</a></li>
-            </lu>
-        </nav>    
-    </div> 
-    <h1>Produts page</h1>
-    `)
     res.send(product)
 })
 app.get('/products/:id', (req, res, next) => {
@@ -53,17 +34,14 @@ booksRouter.get('/about', (req, res, next) => {
 
 app.use('/books', booksRouter)
 
-async function start() {
+function start() {
     try {
-        await mongoose.connect('', {
-            useFindAndModify: false,
-            useNewUrlParser: true
-        })
-        app.listen(port, () => {
-            console.log(`Server was started on ${port} in ${new Date().toLocaleDateString()}`)
+        app.listen(PORT, () => {
+            console.log(`Server has been started on ${PORT} in ${new Date().toLocaleDateString()}`)
         })
     } catch (e) {
-        console.log(e)
+        console.log('Server error', e.message)
+        process.exit(1)
     }
 }
 

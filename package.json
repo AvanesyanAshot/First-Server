@@ -10,6 +10,8 @@
   "author": "AvanesyanAshot <9teron9@mail.ru>",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.5"
   },
